@@ -72,8 +72,7 @@ export default {
         },
         paginateData(){
             return this.getUsersPaginationData()
-        }
-        
+        },        
     },
     created(){
         this.loadUserList(this.current_page)

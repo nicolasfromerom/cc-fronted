@@ -1,7 +1,9 @@
 export default () => ({
-    users: [],
-    links: [],
-    meta: [],
-    user: []
+    users: null,
+    links: null,
+    meta: null,
+    user: null,
+    isCreated: null,
+    errors: null
 })
 

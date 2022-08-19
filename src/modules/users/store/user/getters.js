@@ -9,3 +9,11 @@ export const getUsersPaginationData =  ( state ) => () => {
 export const getUsersById =  ( state ) => () => {
     return state.user
 }
+
+export const getIsCreated = (state) => () => {
+    return state.isCreated
+}
+
+export const getErrors = (state) => () => {
+    return state.errors
+}
