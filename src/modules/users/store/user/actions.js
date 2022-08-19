@@ -23,7 +23,10 @@ export const createUser = async ( {commit}, user) => {
             commit('setError', errors)
             commit('isCreated', false)
         })
-    
+}
 
+export const deleteUser = async ({commit},id) => {
+    await userApi.delete(`/user/${id}`)
+    commit('isCreated', false)
 }
 

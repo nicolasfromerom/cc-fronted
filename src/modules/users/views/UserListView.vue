@@ -24,15 +24,15 @@
                 <td> {{ user.birthday }} </td>
                 <td> {{ user.active == 1 ? 'TRUE':'FALSE' }} </td>
                 <td>
-                    <router-link :to="{ name: 'user-edit', params: {id : 1} }" class="btn btn-warning">Editar</router-link>
+                    <router-link :to="{ name: 'user-edit', params: {id : user.id} }" class="btn btn-warning">Editar</router-link>
                 </td>
                 <td>
-                    <button class="btn btn-danger">Eliminar</button>
+                    <button class="btn btn-danger" @click="modalDeleteUser(user.id)">Eliminar</button>
                 </td>
             </tr>
         </tbody>
     </table>
-        <v-pagination
+        <v-pagination v-if="paginateData"
             v-model="current_page"
             :pages="paginateData.last_page"
             :range-size="1"
@@ -43,16 +43,19 @@
 
 <script>
 
+import Swal from 'sweetalert2';
 import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import VPagination from "@hennge/vue3-pagination";
+
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 
 export default {
     name: 'UserListView',
     data() {
         return {
-            current_page: 1
+            current_page: 1,
+            last_page: 1
         }
     },  
     components: {
@@ -60,8 +63,29 @@ export default {
     },
     methods: {
         ...mapActions(
-            'user', ['loadUserList']
+            'user', ['loadUserList','deleteUser']
         ),
+        modalDeleteUser(id) {
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.deleteUser(id)
+                this.loadUserList(this.current_page)
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+            })
+        }
     },
     computed: {
         ...mapGetters(
@@ -71,6 +95,7 @@ export default {
             return this.getUsersList()
         },
         paginateData(){
+            //this.last_page = this.getUsersPaginationData().last_page
             return this.getUsersPaginationData()
         },        
     },
