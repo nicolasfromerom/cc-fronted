@@ -15,3 +15,7 @@ export const isCreated = ( state, isCreated ) => {
 export const setError = ( state, err ) => {
     state.errors = err
 }
+
+export const setIsUpdated = ( state, isUpdated ) => {
+    state.isUpdate = isUpdated
+}

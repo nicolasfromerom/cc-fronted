@@ -4,6 +4,7 @@ export default () => ({
     meta: null,
     user: null,
     isCreated: null,
-    errors: null
+    errors: null,
+    isUpdate: null
 })
 

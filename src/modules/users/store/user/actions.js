@@ -4,6 +4,7 @@ export const loadUserList =  async ( { commit }, current_page ) => {
     const  { data }  = await userApi.get(`/user?page=${current_page}`)
     commit('setUsers', data)
     commit('isCreated', false)
+    commit('setIsUpdated', false)
 }
 
 export const loadUserById =  async ( { commit }, id ) => {
@@ -18,6 +19,20 @@ export const createUser = async ( {commit}, user) => {
         .then(res => {
             commit('setUsersById', res.data.data)
             commit('isCreated', true)
+        }).catch(err => {
+            const errors= err.response.data.errors
+            commit('setError', errors)
+            commit('isCreated', false)
+        })
+}
+
+export const editUser = async ( {commit}, user) => {
+    //console.log(user)
+    await userApi.put(`/user/${user.id}`, user)
+        .then(res => {
+            console.log(res.data.data);
+            commit('setUsersById', res.data.data)
+            commit('setIsUpdated', true)
         }).catch(err => {
             const errors= err.response.data.errors
             commit('setError', errors)

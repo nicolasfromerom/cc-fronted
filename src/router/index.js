@@ -17,7 +17,12 @@ const routes = [
   {
     path: '/edit/:id',
     name: 'user-edit',
-    component: () => import(/* webpackChunkName: "about" */ '@/modules/users/views/UserEditView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/modules/users/views/UserEditView.vue'),
+    props: ( route ) => {
+      return {
+          id: route.params.id
+      }
+    }
   },
   {
     path: '/create',
