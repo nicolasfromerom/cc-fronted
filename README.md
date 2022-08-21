@@ -1,24 +1,32 @@
-# cc-frontend
 
-## Project setup
-```
-npm install
-```
+# Fronted - Prueba de Desarrollador Full-Stack
+Este proyecto fue generado con Vue CLI 5.0.4
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Installation
+
+- Clonar el repositorio
+
+- Instalar proyecto con npm
+
+    - Dentro de la raíz del proyecto ejecutar:
+
+```bash
+  npm install
+```
+    
+## Deployment
+
+Para desplegar este proyecto en modo de desarrollo ejecutar: 
+
+```bash
+  npm run serve
+```
+Para desplegar este proyecto en modo produccion ejecutar
+
+```bash
+  npm run build
+```
