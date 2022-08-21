@@ -9,7 +9,9 @@
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Cumpleaños</th>
-                <th>Active</th>
+                <th>Activo</th>
+                <th>Creado</th>
+                <th>Editado</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -22,7 +24,9 @@
                 <td> {{ user.name }} </td>
                 <td> {{ user.email }} </td>
                 <td> {{ user.birthday }} </td>
-                <td> {{ user.active == 1 ? 'TRUE':'FALSE' }} </td>
+                <td> {{ isActived(user.active) }} </td>
+                <td> {{ user.created_at }} </td>
+                <td> {{ user.updated_at }} </td>
                 <td>
                     <router-link :to="{ name: 'user-edit', params: {id : user.id} }" class="btn btn-warning">Editar</router-link>
                 </td>
@@ -67,24 +71,28 @@ export default {
         ),
         modalDeleteUser(id) {
             Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: '¿Estas seguro?',
+            text: "Usted no podra revertir esta accion!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Si, Eliminelo!',
+            cancelButtonText: 'Cancelar',
             }).then((result) => {
             if (result.isConfirmed) {
                 this.deleteUser(id)
                 this.loadUserList(this.current_page)
                 Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Eliminado!',
+                'Usuario ha sido eliminado.',
                 'success'
                 )
             }
             })
+        },
+        isActived(valor){
+            return valor == 1 ? 'Si':'No'
         }
     },
     computed: {
@@ -95,7 +103,6 @@ export default {
             return this.getUsersList()
         },
         paginateData(){
-            //this.last_page = this.getUsersPaginationData().last_page
             return this.getUsersPaginationData()
         },        
     },

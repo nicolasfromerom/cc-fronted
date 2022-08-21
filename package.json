@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "@hennge/vue3-pagination": "^1.0.17",
+    "@vue/cli": "^5.0.4",
+    "@vuelidate/core": "^2.0.0-alpha.44",
+    "@vuelidate/validators": "^2.0.0-alpha.31",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "core-js": "^3.8.3",
